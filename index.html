@@ -4,13 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Raidsito - Bot de Discord</title>
-    <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-NQQTZJCC');</script>
-    <!-- End Google Tag Manager -->
     <style>
         :root {
             --bg-color: #f4f4f4;
@@ -49,6 +47,7 @@
             padding: 20px;
             border-radius: 8px;
             position: relative;
+            animation: fadeIn 1s ease-in;
         }
         
         header img {
@@ -132,6 +131,20 @@
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             transition: background-color 0.3s ease;
+            animation: fadeIn 1s ease-in;
+            animation-fill-mode: both;
+        }
+        
+        section:nth-child(1) { animation-delay: 0.2s; }
+        section:nth-child(2) { animation-delay: 0.4s; }
+        section:nth-child(3) { animation-delay: 0.6s; }
+        section:nth-child(4) { animation-delay: 0.8s; }
+        section:nth-child(5) { animation-delay: 1s; }
+        section:nth-child(6) { animation-delay: 1.2s; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         h2 {
@@ -171,6 +184,9 @@
             color: white;
             border-radius: 8px;
             transition: background-color 0.3s ease;
+            animation: fadeIn 1s ease-in;
+            animation-delay: 1.4s;
+            animation-fill-mode: both;
         }
         
         .caracteristicas {
@@ -216,14 +232,56 @@
         #game-result {
             margin-top: 10px;
             font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        
+        .correct {
+            animation: glow 0.5s ease-in-out;
+        }
+        
+        .incorrect {
+            animation: shake 0.5s ease-in-out;
+        }
+        
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px green; }
+            50% { box-shadow: 0 0 20px green; }
+            100% { box-shadow: 0 0 5px green; }
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        
+        .changelog {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+        .version {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .version h3 {
+            margin: 0;
+            color: var(--accent-color);
+        }
+        
+        .version ul {
+            margin: 5px 0 0 20px;
         }
     </style>
 </head>
 <body>
-    <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NQQTZJCC"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
     <header>
         <div class="language-selector">
             <label for="lang-select">Idioma:</label>
@@ -290,11 +348,45 @@
         </div>
     </section>
     
+    <section id="changelog-section">
+        <h2 id="changelog-title">Historial de Versiones</h2>
+        <div class="changelog">
+            <div class="version">
+                <h3>v1.3 - 15/10/2023</h3>
+                <ul>
+                    <li>Nuevo comando !raid para modos especiales.</li>
+                    <li>Mejoras en TTS: Soporte para más idiomas.</li>
+                </ul>
+            </div>
+            <div class="version">
+                <h3>v1.2 - 01/09/2023</h3>
+                <ul>
+                    <li>Agregado mini-juego en la página web.</li>
+                    <li>Corrección de bugs en moderación.</li>
+                </ul>
+            </div>
+            <div class="version">
+                <h3>v1.1 - 15/08/2023</h3>
+                <ul>
+                    <li>Comando !setprefix agregado.</li>
+                    <li>Interfaz web básica lanzada.</li>
+                </ul>
+            </div>
+            <div class="version">
+                <h3>v1.0 - 01/07/2023</h3>
+                <ul>
+                    <li>Lanzamiento inicial con comandos básicos: !ban, !help.</li>
+                    <li>Soporte para moderación y juegos simples.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
     <section id="invitacion">
         <h2 id="invite-title">Invita a Raidsito a tu Servidor</h2>
         <p id="invite-text">¡No esperes más! Añade Raidsito para mejorar tu experiencia en Discord.</p>
         <a href="https://discord.com/oauth2/authorize?client_id=1460127714114797690&permissions=8&integration_type=0&scope=bot" class="boton" target="_blank" id="invite-link">Invitar Raidsito</a>
-        <p style="font-size: 0.9em; margin-top: 10px;" id="invite-note">
+        <p style="font-size: 0.9em; margin-top: 10px;" id="invite-note"></p>
     </section>
     
     <footer>
@@ -322,6 +414,7 @@
                 helpDesc: "Muestra la lista completa de comandos.",
                 gameTitle: "Adivina el Comando",
                 gameInstr: "¡Adivina un comando de Raidsito! Escribe uno y presiona \"Adivinar\".",
+                changelogTitle: "Historial de Versiones",
                 inviteTitle: "Invita a Raidsito a tu Servidor",
                 inviteText: "¡No esperes más! Añade Raidsito para mejorar tu experiencia en Discord.",
                 inviteLink: "Invitar Raidsito",
@@ -347,6 +440,7 @@
                 helpDesc: "Shows the full list of commands.",
                 gameTitle: "Guess the Command",
                 gameInstr: "Guess a Raidsito command! Type one and press \"Guess\".",
+                changelogTitle: "Version History",
                 inviteTitle: "Invite Raidsito to Your Server",
                 inviteText: "Don't wait anymore! Add Raidsito to improve your Discord experience.",
                 inviteLink: "Invite Raidsito",
@@ -419,10 +513,13 @@
             if (validCommands.includes(input)) {
                 result.textContent = '¡Correcto! Ese es un comando válido.';
                 result.style.color = 'green';
+                result.className = 'correct';
             } else {
                 result.textContent = 'Incorrecto. Intenta de nuevo.';
                 result.style.color = 'red';
+                result.className = 'incorrect';
             }
+            setTimeout(() => { result.className = ""; }, 500);
         });
     </script>
 </body>
