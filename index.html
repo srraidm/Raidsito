@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raidsito - Bot de Discord</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            text-align: center;
+            background-color: #7289da; /* Color de Discord */
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        header img {
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+        section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #7289da;
+            border-bottom: 2px solid #7289da;
+            padding-bottom: 10px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        .boton {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #7289da;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .boton:hover {
+            transform: scale(1.1);
+            background-color: #5b6eae;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            border-radius: 8px;
+        }
+        .caracteristicas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .caracteristica {
+            flex: 1 1 200px;
+            text-align: center;
+        }
+        .caracteristica img {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>¡Bienvenido a Raidsito!</h1>
+        <p>El bot de Discord creado por SrRaid</p>
+        <img src="https://i.imgur.com/k8HOEIr.png" alt="Logo de Raidsito" width="150">
+    </header>
+    
+    <section id="descripcion">
+        <h2>¿Qué es Raidsito?</h2>
+        <p>Raidsito es un bot multifuncional para Discord diseñado para hacer tus servidores más divertidos y organizados. Desde moderación hasta entretenimiento, (Si crees que puedes ayudar comunicate en nuestro discord))</p>
+    </section>
+    
+    <section id="caracteristicas">
+        <h2>Características Principales</h2>
+        <div class="caracteristicas">
+            <div class="caracteristica">
+                <img src="https://i.imgur.com/i8lOvYD.png" alt="Moderación">
+                <h3>Moderación</h3>
+                <p>Banea, mutea y gestiona usuarios fácilmente.</p>
+            </div>
+            <div class="caracteristica">
+                <img src="https://i.imgur.com/ZTGPK8h.png" alt="Tts">
+                <h3>TTS</h3>
+                <p>Utiliza una bot para hablar con el bot en canales de voz</p>
+            </div>
+            <div class="caracteristica">
+                <img src="https://i.imgur.com/qJMjCtY.png" alt="Juegos">
+                <h3>Juegos</h3>
+                <p>Diviértete con minijuegos y trivias.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="comandos">
+        <h2>Comandos Principales</h2>
+        <ul>
+            <li><strong>!ban (User)</strong>: Banea a un usuario</li>
+            <li><strong>!setprefix (Nuevo Prefix)</strong>: Cambia el prefix del bot.</li>
+            <li><strong>!help</strong>: Muestra la lista completa de comandos.</li>
+        </ul>
+    </section>
+    
+    <section id="invitacion">
+        <h2>Invita a Raidsito a tu Servidor</h2>
+        <p>¡No esperes más! Añade Raidsito para mejorar tu experiencia en Discord.</p>
+        <a href="https://discord.com/api/oauth2/authorize?client_id=TU_CLIENT_ID&permissions=8&scope=bot" class="boton" target="_blank">Invitar Raidsito</a>
+        <p style="font-size: 0.9em; margin-top: 10px;">Reemplaza <code>TU_CLIENT_ID</code> con el ID real de tu bot de Discord.</p>
+    </section>
+    
+    <footer>
+        <p>Creado por SrRaid. Código fuente disponible en <a href="https://github.com/tu-usuario/tu-repo" style="color: #7289da;">GitHub</a>. ¡Únete a nuestro servidor de soporte!</p>
+        <a href="https://discord.gg/EwrpajZPmq" class="boton">Servidor de Soporte</a>
+    </footer>
+</body>
+</html>
