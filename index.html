@@ -5,73 +5,163 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Raidsito - Bot de Discord</title>
     <style>
+        :root {
+            --bg-color: #f4f4f4;
+            --text-color: #333;
+            --header-bg: #7289da;
+            --section-bg: white;
+            --footer-bg: #333;
+            --accent-color: #7289da;
+            --hover-bg: #5b6eae;
+        }
+        
+        body.dark-mode {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --header-bg: #1e1e1e;
+            --section-bg: #1e1e1e;
+            --footer-bg: #1e1e1e;
+            --accent-color: #bb86fc;
+            --hover-bg: #9c4dff;
+        }
+        
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
-            background-color: #f4f4f4;
-            color: #333;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
+        
         header {
             text-align: center;
-            background-color: #7289da; /* Color de Discord */
+            background-color: var(--header-bg);
             color: white;
             padding: 20px;
             border-radius: 8px;
+            position: relative;
         }
+        
         header img {
             border-radius: 50%;
             border: 3px solid white;
         }
+        
+        .theme-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 24px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background-color: var(--accent-color);
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        
         section {
             margin-bottom: 30px;
             padding: 20px;
-            background-color: white;
+            background-color: var(--section-bg);
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: background-color 0.3s ease;
         }
+        
         h2 {
-            color: #7289da;
-            border-bottom: 2px solid #7289da;
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--accent-color);
             padding-bottom: 10px;
         }
+        
         ul {
             list-style-type: none;
             padding: 0;
         }
+        
         li {
             margin-bottom: 10px;
         }
+        
         .boton {
             display: inline-block;
             padding: 10px 20px;
-            background-color: #7289da;
+            background-color: var(--accent-color);
             color: white;
             text-decoration: none;
             border-radius: 5px;
             transition: transform 0.3s ease, background-color 0.3s ease;
         }
+        
         .boton:hover {
             transform: scale(1.1);
-            background-color: #5b6eae;
+            background-color: var(--hover-bg);
         }
+        
         footer {
             text-align: center;
             padding: 10px;
-            background-color: #333;
+            background-color: var(--footer-bg);
             color: white;
             border-radius: 8px;
+            transition: background-color 0.3s ease;
         }
+        
         .caracteristicas {
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
         }
+        
         .caracteristica {
             flex: 1 1 200px;
             text-align: center;
         }
+        
         .caracteristica img {
             width: 50px;
             height: 50px;
@@ -80,9 +170,17 @@
 </head>
 <body>
     <header>
+        <div class="theme-toggle">
+            <span>Modo Claro</span>
+            <label class="switch">
+                <input type="checkbox" id="theme-switch">
+                <span class="slider"></span>
+            </label>
+            <span>Modo Oscuro</span>
+        </div>
         <h1>¡Bienvenido a Raidsito!</h1>
         <p>El bot de Discord creado por SrRaid</p>
-        <img src="https://i.imgur.com/k8HOEIr.png" alt="Logo de Raidsito" width="150">
+        <img src="https://i.imgur.com/zwCzC8y.png" alt="Logo de Raidsito" width="129">
     </header>
     
     <section id="descripcion">
@@ -123,13 +221,35 @@
     <section id="invitacion">
         <h2>Invita a Raidsito a tu Servidor</h2>
         <p>¡No esperes más! Añade Raidsito para mejorar tu experiencia en Discord.</p>
-        <a href="https://discord.com/api/oauth2/authorize?client_id=TU_CLIENT_ID&permissions=8&scope=bot" class="boton" target="_blank">Invitar Raidsito</a>
-        <p style="font-size: 0.9em; margin-top: 10px;">Reemplaza <code>TU_CLIENT_ID</code> con el ID real de tu bot de Discord.</p>
+        <a href="https://discord.com/oauth2/authorize?client_id=1460127714114797690&permissions=8&integration_type=0&scope=bot" class="boton" target="_blank">Invitar Raidsito</a>
+        <p style="font-size: 0.9em; margin-top: 10px;">
     </section>
     
     <footer>
         <p>Creado por SrRaid. Código fuente disponible en <a href="https://github.com/tu-usuario/tu-repo" style="color: #7289da;">GitHub</a>. ¡Únete a nuestro servidor de soporte!</p>
         <a href="https://discord.gg/EwrpajZPmq" class="boton">Servidor de Soporte</a>
     </footer>
+
+    <script>
+        const themeSwitch = document.getElementById('theme-switch');
+        const body = document.body;
+
+        // Cargar preferencia guardada
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+            themeSwitch.checked = true;
+        }
+
+        // Cambiar tema al hacer clic
+        themeSwitch.addEventListener('change', () => {
+            if (themeSwitch.checked) {
+                body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
 </body>
 </html>
