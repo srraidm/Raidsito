@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Raidsito - Bot de Discord</title>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NQQTZJCC');</script>
+    <!-- End Google Tag Manager -->
     <style>
         :root {
             --bg-color: #f4f4f4;
@@ -49,13 +56,20 @@
             border: 3px solid white;
         }
         
-        .theme-toggle {
+        .theme-toggle, .language-selector {
             position: absolute;
             top: 10px;
-            right: 10px;
             display: flex;
             align-items: center;
             gap: 10px;
+        }
+        
+        .theme-toggle {
+            right: 10px;
+        }
+        
+        .language-selector {
+            left: 10px;
         }
         
         .switch {
@@ -101,6 +115,14 @@
         
         input:checked + .slider:before {
             transform: translateX(26px);
+        }
+        
+        select {
+            padding: 5px;
+            border-radius: 5px;
+            border: none;
+            background-color: white;
+            color: #333;
         }
         
         section {
@@ -166,10 +188,50 @@
             width: 50px;
             height: 50px;
         }
+        
+        .game {
+            text-align: center;
+        }
+        
+        .game input {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        
+        .game button {
+            padding: 10px 20px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .game button:hover {
+            background-color: var(--hover-bg);
+        }
+        
+        #game-result {
+            margin-top: 10px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NQQTZJCC"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <header>
+        <div class="language-selector">
+            <label for="lang-select">Idioma:</label>
+            <select id="lang-select">
+                <option value="es">Español</option>
+                <option value="en">English</option>
+            </select>
+        </div>
         <div class="theme-toggle">
             <span>Modo Claro</span>
             <label class="switch">
@@ -178,59 +240,159 @@
             </label>
             <span>Modo Oscuro</span>
         </div>
-        <h1>¡Bienvenido a Raidsito!</h1>
-        <p>El bot de Discord creado por SrRaid</p>
+        <h1 id="title">¡Bienvenido a Raidsito!</h1>
+        <p id="subtitle">El bot de Discord creado por SrRaid</p>
         <img src="https://i.imgur.com/zwCzC8y.png" alt="Logo de Raidsito" width="129">
     </header>
     
     <section id="descripcion">
-        <h2>¿Qué es Raidsito?</h2>
-        <p>Raidsito es un bot multifuncional para Discord diseñado para hacer tus servidores más divertidos y organizados. Desde moderación hasta entretenimiento, (Si crees que puedes ayudar comunicate en nuestro discord))</p>
+        <h2 id="desc-title">¿Qué es Raidsito?</h2>
+        <p id="desc-text">Raidsito es un bot multifuncional para Discord diseñado para hacer tus servidores más divertidos y organizados. Desde moderación hasta entretenimiento, (Si crees que puedes ayudar comunicate en nuestro discord))</p>
     </section>
     
     <section id="caracteristicas">
-        <h2>Características Principales</h2>
+        <h2 id="features-title">Características Principales</h2>
         <div class="caracteristicas">
             <div class="caracteristica">
                 <img src="https://i.imgur.com/i8lOvYD.png" alt="Moderación">
-                <h3>Moderación</h3>
-                <p>Banea, mutea y gestiona usuarios fácilmente.</p>
+                <h3 id="mod-title">Moderación</h3>
+                <p id="mod-text">Banea, mutea y gestiona usuarios fácilmente.</p>
             </div>
             <div class="caracteristica">
                 <img src="https://i.imgur.com/ZTGPK8h.png" alt="Tts">
-                <h3>TTS</h3>
-                <p>Utiliza una voz para hablar con el bot en canales de voz</p>
+                <h3 id="tts-title">TTS</h3>
+                <p id="tts-text">Utiliza una voz para hablar con el bot en canales de voz</p>
             </div>
             <div class="caracteristica">
                 <img src="https://i.imgur.com/qJMjCtY.png" alt="Juegos">
-                <h3>Juegos</h3>
-                <p>Diviértete con minijuegos y trivias.</p>
+                <h3 id="games-title">Juegos</h3>
+                <p id="games-text">Diviértete con minijuegos y trivias.</p>
             </div>
         </div>
     </section>
     
     <section id="comandos">
-        <h2>Comandos Principales</h2>
+        <h2 id="commands-title">Comandos Principales</h2>
         <ul>
-            <li><strong>!ban (User)</strong>: Banea a un usuario</li>
-            <li><strong>!setprefix (Nuevo Prefix)</strong>: Cambia el prefix del bot.</li>
-            <li><strong>!help</strong>: Muestra la lista completa de comandos.</li>
+            <li><strong>!ban (User)</strong>: <span id="ban-desc">Banea a un usuario</span></li>
+            <li><strong>!setprefix (Nuevo Prefix)</strong>: <span id="prefix-desc">Cambia el prefix del bot.</span></li>
+            <li><strong>!help</strong>: <span id="help-desc">Muestra la lista completa de comandos.</span></li>
         </ul>
     </section>
     
+    <section id="game-section">
+        <h2 id="game-title">Mini-Juego: Adivina el Comando</h2>
+        <div class="game">
+            <p id="game-instr">¡Adivina un comando de Raidsito! Escribe uno y presiona "Adivinar".</p>
+            <input type="text" id="game-input" placeholder="Ej: !help">
+            <button id="game-button">Adivinar</button>
+            <p id="game-result"></p>
+        </div>
+    </section>
+    
     <section id="invitacion">
-        <h2>Invita a Raidsito a tu Servidor</h2>
-        <p>¡No esperes más! Añade Raidsito para mejorar tu experiencia en Discord.</p>
-        <a href="https://discord.com/oauth2/authorize?client_id=1460127714114797690&permissions=8&integration_type=0&scope=bot" class="boton" target="_blank">Invitar Raidsito</a>
-        <p style="font-size: 0.9em; margin-top: 10px;">
+        <h2 id="invite-title">Invita a Raidsito a tu Servidor</h2>
+        <p id="invite-text">¡No esperes más! Añade Raidsito para mejorar tu experiencia en Discord.</p>
+        <a href="https://discord.com/oauth2/authorize?client_id=1460127714114797690&permissions=8&integration_type=0&scope=bot" class="boton" target="_blank" id="invite-link">Invitar Raidsito</a>
+        <p style="font-size: 0.9em; margin-top: 10px;" id="invite-note">
     </section>
     
     <footer>
-        <p>Creado por SrRaid. Código fuente disponible en <a href="https://github.com/srraidm/Raidsito" style="color: #7289da;">GitHub</a>. ¡Únete a nuestro servidor de soporte!</p>
-        <a href="https://discord.gg/EwrpajZPmq" class="boton">Servidor de Soporte</a>
+        <p id="footer-text">Creado por SrRaid. Código fuente disponible en <a href="https://github.com/srraidm/Raidsito" style="color: #7289da;">GitHub</a>. ¡Únete a nuestro servidor de soporte!</p>
+        <a href="https://discord.gg/EwrpajZPmq" class="boton" id="support-link">Servidor de Soporte</a>
     </footer>
 
     <script>
+        const texts = {
+            es: {
+                title: "¡Bienvenido a Raidsito!",
+                subtitle: "El bot de Discord creado por SrRaid",
+                descTitle: "¿Qué es Raidsito?",
+                descText: "Raidsito es un bot multifuncional para Discord diseñado para hacer tus servidores más divertidos y organizados. Desde moderación hasta entretenimiento, (Si crees que puedes ayudar comunicate en nuestro discord))",
+                featuresTitle: "Características Principales",
+                modTitle: "Moderación",
+                modText: "Banea, mutea y gestiona usuarios fácilmente.",
+                ttsTitle: "TTS",
+                ttsText: "Utiliza una voz para hablar con el bot en canales de voz",
+                gamesTitle: "Juegos",
+                gamesText: "Diviértete con minijuegos y trivias.",
+                commandsTitle: "Comandos Principales",
+                banDesc: "Banea a un usuario",
+                prefixDesc: "Cambia el prefix del bot.",
+                helpDesc: "Muestra la lista completa de comandos.",
+                gameTitle: "Mini-Juego: Adivina el Comando",
+                gameInstr: "¡Adivina un comando de Raidsito! Escribe uno y presiona \"Adivinar\".",
+                inviteTitle: "Invita a Raidsito a tu Servidor",
+                inviteText: "¡No esperes más! Añade Raidsito para mejorar tu experiencia en Discord.",
+                inviteLink: "Invitar Raidsito",
+                inviteNote: "",
+                footerText: "Creado por SrRaid. Código fuente disponible en <a href=\"https://github.com/srraidm/Raidsito\" style=\"color: #7289da;\">GitHub</a>. ¡Únete a nuestro servidor de soporte!",
+                supportLink: "Servidor de Soporte"
+            },
+            en: {
+                title: "Welcome to Raidsito!",
+                subtitle: "The Discord bot created by SrRaid",
+                descTitle: "What is Raidsito?",
+                descText: "Raidsito is a multifunctional Discord bot designed to make your servers more fun and organized. From moderation to entertainment, (If you think you can help, contact us on our Discord))",
+                featuresTitle: "Main Features",
+                modTitle: "Moderation",
+                modText: "Ban, mute and manage users easily.",
+                ttsTitle: "TTS",
+                ttsText: "Use a voice to speak with the bot in voice channels",
+                gamesTitle: "Games",
+                gamesText: "Have fun with mini-games and trivia.",
+                commandsTitle: "Main Commands",
+                banDesc: "Ban a user",
+                prefixDesc: "Change the bot's prefix.",
+                helpDesc: "Shows the full list of commands.",
+                gameTitle: "Mini-Game: Guess the Command",
+                gameInstr: "Guess a Raidsito command! Type one and press \"Guess\".",
+                inviteTitle: "Invite Raidsito to Your Server",
+                inviteText: "Don't wait anymore! Add Raidsito to improve your Discord experience.",
+                inviteLink: "Invite Raidsito",
+                inviteNote: "",
+                footerText: "Created by SrRaid. Source code available on <a href=\"https://github.com/srraidm/Raidsito\" style=\"color: #7289da;\">GitHub</a>. Join our support server!",
+                supportLink: "Support Server"
+            }
+        };
+
+        function changeLanguage(lang) {
+            document.getElementById('title').textContent = texts[lang].title;
+            document.getElementById('subtitle').textContent = texts[lang].subtitle;
+            document.getElementById('desc-title').textContent = texts[lang].descTitle;
+            document.getElementById('desc-text').textContent = texts[lang].descText;
+            document.getElementById('features-title').textContent = texts[lang].featuresTitle;
+            document.getElementById('mod-title').textContent = texts[lang].modTitle;
+            document.getElementById('mod-text').textContent = texts[lang].modText;
+            document.getElementById('tts-title').textContent = texts[lang].ttsTitle;
+            document.getElementById('tts-text').textContent = texts[lang].ttsText;
+            document.getElementById('games-title').textContent = texts[lang].gamesTitle;
+            document.getElementById('games-text').textContent = texts[lang].gamesText;
+            document.getElementById('commands-title').textContent = texts[lang].commandsTitle;
+            document.getElementById('ban-desc').textContent = texts[lang].banDesc;
+            document.getElementById('prefix-desc').textContent = texts[lang].prefixDesc;
+            document.getElementById('help-desc').textContent = texts[lang].helpDesc;
+            document.getElementById('game-title').textContent = texts[lang].gameTitle;
+            document.getElementById('game-instr').textContent = texts[lang].gameInstr;
+            document.getElementById('invite-title').textContent = texts[lang].inviteTitle;
+            document.getElementById('invite-text').textContent = texts[lang].inviteText;
+            document.getElementById('invite-link').textContent = texts[lang].inviteLink;
+            document.getElementById('invite-note').innerHTML = texts[lang].inviteNote;
+            document.getElementById('footer-text').innerHTML = texts[lang].footerText;
+            document.getElementById('support-link').textContent = texts[lang].supportLink;
+            localStorage.setItem('language', lang);
+        }
+
+        // Evento para selector de idioma
+        document.getElementById('lang-select').addEventListener('change', (e) => {
+            changeLanguage(e.target.value);
+        });
+
+        // Cargar idioma guardado
+        const savedLang = localStorage.getItem('language') || 'es';
+        document.getElementById('lang-select').value = savedLang;
+        changeLanguage(savedLang);
+
         const themeSwitch = document.getElementById('theme-switch');
         const body = document.body;
 
@@ -246,6 +408,20 @@
             } else {
                 body.classList.remove('dark-mode');
                 localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Mini-juego
+        const validCommands = ['!ban', '!setprefix', '!help'];
+        document.getElementById('game-button').addEventListener('click', () => {
+            const input = document.getElementById('game-input').value.trim().toLowerCase();
+            const result = document.getElementById('game-result');
+            if (validCommands.includes(input)) {
+                result.textContent = '¡Correcto! Ese es un comando válido.';
+                result.style.color = 'green';
+            } else {
+                result.textContent = 'Incorrecto. Intenta de nuevo.';
+                result.style.color = 'red';
             }
         });
     </script>
