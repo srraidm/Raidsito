@@ -281,7 +281,7 @@
     </section>
     
     <section id="game-section">
-        <h2 id="game-title">Mini-Juego: Adivina el Comando</h2>
+        <h2 id="game-title">Adivina el Comando</h2>
         <div class="game">
             <p id="game-instr">¡Adivina un comando de Raidsito! Escribe uno y presiona "Adivinar".</p>
             <input type="text" id="game-input" placeholder="Ej: !help">
@@ -412,7 +412,7 @@
         });
 
         // Mini-juego
-        const validCommands = ['!ban', '!setprefix', '!help'];
+        const validCommands = ['!ban', '!setprefix', '!help', '!wokay', '!mango', '!sapito', '!mute', '!warn', '!wans', '!bans', '!say', '!unwarn', '!unban', '!unmute', '!kick', '!estres', '!clear', '!slowmode', '!info', '!userinfo', '!serverinfo', '!join', '!leave', '!tts'];
         document.getElementById('game-button').addEventListener('click', () => {
             const input = document.getElementById('game-input').value.trim().toLowerCase();
             const result = document.getElementById('game-result');
